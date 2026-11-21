@@ -1,0 +1,56 @@
+{
+  "id": "GL-0002",
+  "created": "2026-11-21",
+  "seed": "a12c50ffbb4abea4",
+  "rules": "great-plains-1850-1930@1",
+  "traits": {
+    "kind": "light",
+    "region": "dakota",
+    "era": "hard_winters",
+    "community": "norwegian",
+    "origin": "rail_accident",
+    "manifestation": "lantern",
+    "disposition": "vengeful",
+    "conditions": "before_blizzard",
+    "signs": [
+      "coyotes_hush",
+      "harness_bells",
+      "lamp_leans"
+    ],
+    "remedy": "do_not_follow"
+  },
+  "facts": {
+    "year": 1893,
+    "family": "Brekke",
+    "river": "Vermillion River",
+    "place": "the lake shore on the Vermillion River",
+    "place_short": "Vermillion River",
+    "dead": {
+      "name": "Ole Skjervold",
+      "first": "Ole",
+      "surname": "Skjervold",
+      "role": "a section hand",
+      "sex": "m"
+    },
+    "witness": {
+      "name": "Gunhild Tveit",
+      "first": "Gunhild",
+      "surname": "Tveit",
+      "role": "a homesteader",
+      "sex": "f"
+    },
+    "light_src": "coal-oil lamp",
+    "rig": "wagon",
+    "people": "the Norwegian settlers",
+    "term": "lyktemannen"
+  },
+  "entry": {
+    "common_name": "The Vermillion River Lantern",
+    "local_name": "The Norwegian settlers call it *lyktemannen*.",
+    "description": "It means harm, and the old settlers hold that it means harm to one family above all. It is a light of the Dakota prairie, and shows itself as a lantern swinging at the height of a walking man, with no one carrying it, most often in the hour before a blizzard. Its presence is known because there is a jingle of harness, the lamp flame leans toward the door, and the coyotes hush all at once.",
+    "first_account": "\"I saw a lantern coming across the field, swinging like somebody was carrying it. There was nobody carrying it.\" So a homesteader named Gunhild Tveit reported it in 1893. The explanation given locally is that a section hand named Ole Skjervold was struck by a night train at the lake shore on the Vermillion River while walking the track home from the section house.",
+    "precaution": "Recommended precaution: The only rule is not to follow it, however near it seems or however familiar.",
+    "prose_attempt": 0
+  },
+  "slug": "the-vermillion-river-lantern"
+}

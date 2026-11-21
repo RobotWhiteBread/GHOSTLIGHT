@@ -1,0 +1,667 @@
+# GHOSTLIGHT prose banks.
+#
+# How contradiction is prevented:
+#   1. Templates (bottom of file) contain no folklore of their own. Every
+#      claim about origin, manifestation, signs, conditions, remedy and
+#      temper comes from the bank of the value the entity actually drew.
+#   2. Each value may list `markers`, words that belong to it alone. After
+#      an entry is written, the lint checks that no marker of a value the
+#      entity did NOT draw appears in the text. If one does, the entry is
+#      rewritten from the next sub-seed; if none pass, generation fails loudly.
+#
+# Symbols the banks may use (filled per entity, then fixed forever):
+#   #dead#        the dead person, with their calling ("a freighter, Ole Lindqvist")
+#   #dead_name#   just the name
+#   #dead_first#  given name
+#   #family#      a family of the district ("Hrabak")
+#   #place#       the haunted spot in full
+#   #place_short# a short handle for the spot
+#   #river#       the nearest river or creek
+#   #year#        year of the first recorded account
+#   #light_src#   what people carried for light in that era
+#   #rig#         what people drove in that era
+
+origin:
+  drowned_ford:
+    epithet: [Drowned, Ford]
+    markers: [drown]
+    account:
+      - "#dead# drowned at #place# in the spring of #year#, trying to cross when #the_river# was over its banks"
+      - "#dead# went into #the_river# at #place# in high water and was not found until the river fell"
+  frozen_blizzard:
+    epithet: [Frozen, Blizzard, Winter]
+    markers: [froze]
+    account:
+      - "#dead# was caught by a blizzard between the barn and the house and was found frozen in the spring, not forty rods from the door"
+      - "#dead# set out ahead of a storm in the winter of #year# and froze within sight of a lighted window that no one in it could see past the snow"
+  trail_cholera:
+    epithet: [Emigrant, Wayside]
+    markers: [cholera]
+    account:
+      - "#dead# died of cholera on the trail and was buried beside it the same afternoon, without a marker, because the train could not wait"
+      - "#dead# took the cholera at #place# and was put in the ground there by people who had to be moving by morning"
+  prairie_fire:
+    epithet: [Burnt, Fire]
+    markers: [prairie fire]
+    account:
+      - "#dead# was overtaken by a prairie fire in the fall of #year# while trying to reach the plowed ground at #place#"
+      - "#dead# was burned in a prairie fire that came over the rise faster than a horse could run"
+  claim_quarrel:
+    noun: [Claim]
+    epithet: [Claim, Quarrel]
+    markers: [claim jumper, quarrel, contested claim]
+    account:
+      - "#dead# was killed in a quarrel over a contested claim at #place#, and the man who did it proved up on the land the next year"
+      - "#dead# was shot in #year# over a quarter section that two families had filed on, and was buried on the disputed ground"
+  rail_accident:
+    dead_role: [a section hand, a brakeman]
+    dead_sex: m
+    noun: [Crossing]
+    epithet: [Section, Iron]
+    markers: [section gang, walking the track]
+    account:
+      - "#dead# was killed with the railroad section gang at #place#, crushed between two cars in the dark"
+      - "#dead# was struck by a night train at #place# while walking the track home from the section house"
+  lightning_herd:
+    dead_role: [a cowhand, a night herder]
+    dead_sex: m
+    epithet: [Night Herd, Lightning]
+    markers: [struck by lightning, killed by lightning]
+    account:
+      - "#dead# was struck by lightning while riding night herd near #place#, and the cattle ran until morning"
+      - "#dead# was killed by lightning on night herd in the summer of #year#; the horse came in alone with its mane singed"
+  thirst:
+    epithet: [Thirsting, Dry Table]
+    markers: [thirst]
+    account:
+      - "#dead# lost the trail on the dry table above #place# and died of thirst a half day from water"
+      - "#dead# was found on the high ground in #year#, dead of thirst, with an empty canteen and the cork still in #his# hand"
+  stampede:
+    dead_role: [a cowhand, a young drover]
+    dead_sex: m
+    epithet: [Stampede, Drag]
+    markers: [stampede, trampled]
+    account:
+      - "#dead# was trampled in a night stampede near #place#; they found #him# in the morning by the circling of the birds"
+      - "#dead# went down under the herd when it ran in the dark, and the outfit buried #him# and drove on"
+  well_cavein:
+    dead_role: [a well digger, a hired hand]
+    dead_sex: m
+    noun: [Well]
+    epithet: [Well, Buried]
+    markers: [caved in, well digger]
+    account:
+      - "#dead# was digging a well for the #family# place when it caved in, and the well was filled and never dug again"
+      - "#dead# was buried alive in #year# when the walls of a hand-dug well gave way at #place#"
+  sod_collapse:
+    noun: [Soddy, Sod House]
+    epithet: [Sod House, Soddy]
+    markers: [roof gave way, sod roof]
+    account:
+      - "#dead# was crushed when the sod roof of the #family# house gave way under a week of spring rain"
+      - "#dead# died in #year# when the wet roof of a sod house came down in the night"
+  searcher:
+    epithet: [Searching, Lantern]
+    markers: [search party, searcher]
+    account:
+      - "#dead# went out with #light_src.a# to find a neighbor lost in the snow and never came back; the neighbor walked in at dawn"
+      - "#dead# joined the search party at #place# in #year# and was the only one of them not found"
+  wet_meadow:
+    epithet: [Meadow, Marsh]
+    markers: [wet meadow]
+    account:
+      - "the first lights were seen over the wet meadow below the #family# place in #year#, the summer after the hay rotted standing"
+      - "they rose out of the wet meadows at #place# after a hard year, and the old settlers say they have risen every hard year since"
+  third_dry_summer:
+    epithet: [Drought, Third Summer]
+    markers: [third dry summer]
+    account:
+      - "it was first remarked in #year#, the third dry summer running, when the corn burned in the tassel"
+      - "the #family# family dated it from the third dry summer, when the wells went down and the wind never stopped"
+  broken_sod:
+    noun: [Breaking]
+    epithet: [Breaking, Sod]
+    markers: [breaking plow, first broken]
+    account:
+      - "it woke when the sod at #place# was first broken, in #year#, and the man who broke it said the plow screamed"
+      - "the #family# family broke the sod at #place# in #year# and say that something under it has been awake ever since"
+  blowout:
+    epithet: [Blowout, Sand]
+    markers: [blowout]
+    account:
+      - "it lives in a blowout at #place#, where the grass let go of the sand in the dry year of #year# and never took hold again"
+      - "the cattlemen first spoke of it in #year#, when the blowout at #place# opened in a single season"
+  first_norther:
+    epithet: [Norther, North Wind]
+    markers: [norther]
+    account:
+      - "it comes in on the first norther of each year, and was first written of in #year# when the norther came in September"
+      - "the #family# family say it rode in on the first norther of #year# and has come back on the first norther since"
+  grasshopper_year:
+    epithet: [Grasshopper, Locust]
+    markers: [grasshopper]
+    account:
+      - "it came with the grasshoppers in #year#, the year they ate the country bare, and stayed when they had gone"
+      - "it was first remarked in the grasshopper year of #year#, when the swarm darkened the sun at #place#"
+  unhung_bell:
+    epithet: [Bell]
+    noun: [Bell]
+    markers: [bell for the church, never hung]
+    account:
+      - "the bell was hauled overland for a church at #place# that was never built, and it was left in the grass where the wagon broke down"
+      - "the bell came out from the East in #year# for a congregation that scattered before it could be hung, and it was never hung"
+  trail_fence:
+    epithet: [Fence, Wire]
+    noun: [Fence, Wire]
+    markers: [strung across, strung wire across]
+    account:
+      - "the fence was strung across the old trail at #place# in #year#, over the wheel ruts and, they say, over the graves beside them"
+      - "#family# strung wire across the old trail in #year# to close his pasture, though the ruts still ran under it"
+  windmill_well:
+    epithet: [Windmill]
+    noun: [Windmill, Mill]
+    markers: [body was found, windmill was raised]
+    account:
+      - "the windmill was raised at #place# in #year# over a well where a body was found, a man no one in the district could name"
+      - "#family# found a body in the old well at #place# and put up a windmill over it rather than dig another"
+  blizzard_school:
+    epithet: [Schoolhouse]
+    noun: [Schoolhouse, School]
+    markers: [teacher kept the children, held the children]
+    account:
+      - "in the blizzard of #year# the teacher at #place# kept the children in the schoolhouse through two nights, burning the desks, and every child lived"
+      - "the sod schoolhouse at #place# is where the teacher held the children through the storm of #year#, and would not let one go out"
+  set_table:
+    epithet: [Shanty, Supper]
+    noun: [Shanty, Claim Shanty]
+    markers: [table still set, abandoned]
+    account:
+      - "the claim shanty at #place# was found abandoned in #year# with the table still set for four and the bread gone green"
+      - "the #family# family left the shanty at #place# between one meal and the next, and the table was still set when the neighbors came"
+  bone_pile:
+    epithet: [Bone, Bone Rick]
+    noun: [Bone Rick, Bones]
+    markers: [buffalo bones, bone trade]
+    account:
+      - "the buffalo bones were gathered off the prairie for the bone trade in #year# and stacked at #place# for a train that did not come for them"
+      - "#family# gathered buffalo bones for the bone trade and ricked them at #place#, higher than a wagon, and left them there"
+
+manifestation:
+  walker:
+    noun: [Walker, Figure]
+    markers: [lamplight]
+    seen:
+      - "a figure walking at the edge of the lamplight, never nearer and never farther"
+      - "someone walking just beyond the reach of the lamplight, keeping pace with whoever carries it"
+    testimony:
+      - "There was someone walking out past the lamplight. When I stopped, it stopped."
+      - "I held the lamp up and it walked at the very edge of it, the way a dog keeps out of reach of a stick."
+  rider:
+    noun: [Rider, Horseman]
+    markers: [horseman, keeps pace with travelers, hallooed]
+    seen:
+      - "a rider who keeps pace with travelers, just too far off to hail"
+      - "a horseman on the skyline who matches the traveler's gait, and does not answer"
+    testimony:
+      - "A rider came up alongside, a quarter mile off, and kept with me. I hallooed #him# and #he# never turned #his# head."
+      - "There was a horseman on the ridge going my way and going my speed. I never heard his horse."
+  wet_figure:
+    noun: [Visitor, Drowned Man]
+    markers: [dripping, wet through]
+    seen:
+      - "a figure that stands in a doorway, dripping, and is gone when a light is brought"
+      - "someone standing wet through in an open doorway, with water running off them onto the boards"
+    testimony:
+      - "I looked up and there was someone in the doorway, wet through, the water running off onto the floor. I went for the lamp and when I came back there was only the water."
+      - "It stood in the door with its clothes all running wet, and it did not come in."
+  voice:
+    noun: [Caller, Voice]
+    markers: [calling a name, called my name]
+    seen:
+      - "a voice calling a name across open country, always from the same direction"
+      - "a voice that calls a single name, over and over, from somewhere out in the dark"
+    testimony:
+      - "Somebody out there called my name, plain as day, three times. There was nobody for a mile."
+      - "It was calling a name. Not mine. I have never been able to forget the name."
+  knocking:
+    noun: [Knocker]
+    markers: [knock]
+    seen:
+      - "knocking at a door or window from outside, three times, with no one there"
+      - "a knocking at the door, patient and regular, that stops the moment the latch is touched"
+    testimony:
+      - "Something knocked at the window three times. I could see the whole yard and there was nothing in it."
+      - "It knocked at the door the way a neighbor knocks. I did not open it."
+  phantom_team:
+    noun: [Team, Wagon]
+    markers: [trace chains, team and wagon, loaded wagon, wagon pull]
+    seen:
+      - "the sound of a team and wagon passing close by, though nothing is ever seen"
+      - "the creak and jingle of a loaded wagon going past in the dark, with no wagon on the road"
+    testimony:
+      - "A team and wagon went right past me on the road. I heard the wheels and the trace chains. I saw nothing at all."
+      - "We heard a wagon pull into the yard and stop. My father went out with the lantern and there were no tracks at all."
+  lantern:
+    noun: [Lantern, Light]
+    markers: [swinging, swings as if carried]
+    seen:
+      - "a lantern swinging at the height of a walking man, with no one carrying it"
+      - "a light that swings as if carried, at the height of a man's hand, crossing open ground"
+    testimony:
+      - "I saw a lantern coming across the field, swinging like somebody was carrying it. There was nobody carrying it."
+      - "It was a lantern, plain as anything, at the height of a man's hand, and it swung the way a lantern swings in a walking hand."
+  ball_light:
+    noun: [Light, Fire Ball]
+    markers: [rolls along, ball of light, rolling]
+    seen:
+      - "a ball of light that rolls along the ground and climbs the fences without slowing"
+      - "a round light, about the size of a bushel basket, that rolls along the ground and passes through wire"
+    testimony:
+      - "A ball of light came rolling down the section line and went right through the fence without slowing."
+      - "It was round and it rolled, the way a wheel rolls, along the top of the grass."
+  meadow_lights:
+    noun: [Lights, Meadow Lights]
+    markers: [pale lights]
+    seen:
+      - "pale lights moving over the meadow in a loose company, never more than seven"
+      - "a scatter of pale lights over the low ground that go out when looked at directly"
+    testimony:
+      - "There were pale lights over the meadow, five or six, drifting like people looking for something they dropped."
+      - "I counted the lights and lost count, and counted again, and there was one fewer."
+  fire_line:
+    noun: [Fire, Fire Line]
+    markers: [line of fire, without smoke, no smoke]
+    seen:
+      - "a line of fire along the horizon that gives no smoke and does not spread"
+      - "a low red line of fire on the skyline, burning without smoke, that is never there by daylight"
+    testimony:
+      - "I saw a line of fire on the horizon and ran to wake the house. There was no smoke to it and it did not move."
+      - "The whole west was afire in a thin red line, and not a breath of smoke anywhere."
+  whirlwind:
+    noun: [Whirlwind, Dust Devil]
+    markers: [whirlwind, upwind]
+    seen:
+      - "a whirlwind that travels against the wind and does not break up on open ground"
+      - "a column of dust that walks upwind, turning the wrong way"
+    testimony:
+      - "A whirlwind came across the pasture against the wind. It stopped at the fence and stood there, turning."
+      - "It walked up into the wind like a man leaning on it, and the dust turned the wrong way round."
+  ground_blizzard:
+    noun: [Ground Blizzard, Drift]
+    markers: [ground blizzard, waist deep]
+    seen:
+      - "a ground blizzard that rises on a still, clear night, with the stars plain overhead"
+      - "snow blowing waist deep across the ground under a clear sky and no wind"
+    testimony:
+      - "The stars were all out and there was not a breath of wind and the snow was blowing waist deep across the yard."
+      - "I could see the moon. I could not see my own feet for the snow going past them."
+  cold_patch:
+    noun: [Cold, Cold Place]
+    markers: [horse's breath, cold place, like a cellar]
+    seen:
+      - "a patch of air cold enough to show a horse's breath in August"
+      - "a cold place on open ground, a few rods across, where breath shows in midsummer"
+    testimony:
+      - "It was a warm night and my horse's breath came out of him white as winter."
+      - "We rode into a cold like a cellar and out of it again in twenty steps."
+  noon_woman:
+    noun: [Noon Woman, Heat Woman]
+    markers: [shimmer]
+    seen:
+      - "a woman's shape standing in the shimmer of noon heat at the far end of a field"
+      - "the shape of a woman in the heat shimmer at midday, who is nearer each time one looks up"
+    testimony:
+      - "There was a woman standing in the heat at the end of the row. Every time I looked up she was nearer."
+      - "She was made of the shimmer off the ground, and she had her hand up as if to call me in from the field."
+  bell_ringing:
+    noun: [Bell]
+    markers: [no bell, bell ringing, rang and rang]
+    seen:
+      - "a bell ringing where no bell hangs, heard for miles on still evenings"
+      - "the sound of a bell, slow and heavy, from open prairie where no bell has ever hung"
+    testimony:
+      - "We heard a bell ringing, slow, like a funeral, and there is no church within twenty miles."
+      - "It rang and rang. I could feel it in the floor."
+  returns:
+    noun: [Stone, Relic]
+    markers: [however far, it was back, home before]
+    seen:
+      - "a thing that returns to where it stood, however far it is taken"
+      - "an object that, taken away, is found again in its old place within the week"
+    testimony:
+      - "We hauled it off to the river and left it. Three days after, it was back."
+      - "My brother took it clear to town on the wagon. It was home before he was."
+  wrong_water:
+    noun: [Well, Water]
+    markers: [came up warm, rust red, tasting of iron]
+    seen:
+      - "well water that comes up warm, or red, or tasting of iron"
+      - "water that comes up from the well wrong: warm as blood, or rust red"
+    testimony:
+      - "The water came up warm as dishwater, and it tasted like a nail."
+      - "We drew a bucket and it was red, and we drew another and it was clear, and nobody would drink either one."
+  set_supper:
+    noun: [Supper, Table]
+    markers: [laid for supper, supper set out, supper on the table]
+    seen:
+      - "a table found laid for supper in an empty house, with the plates still warm"
+      - "a supper set out for a family that is not there, the chairs pulled back as if they had just risen"
+    testimony:
+      - "There was supper on the table, four places, and the coffee was hot, and nobody had lived there in years."
+      - "Every chair was pushed back like they had just gotten up. The lamp was lit."
+  singing_wire:
+    noun: [Wire, Singing Wire]
+    markers: [wire was singing, sings in still air, hums and sings, one long note]
+    seen:
+      - "wire that sings in still air, a long high note along the whole fence line"
+      - "a fence that hums and sings when there is no wind to make it"
+    testimony:
+      - "The wire was singing. There was no wind. I put my hand on the post and it shook."
+      - "You could hear it a quarter mile off, one long note, like a finger on a glass."
+
+disposition:
+  guiding:
+    temper:
+      - "It means no harm, and more than one family owes a life to it, for it leads the lost toward shelter."
+      - "It is counted a friend. It leads the lost toward shelter and asks nothing for it."
+  warning:
+    temper:
+      - "It does no harm of itself, but it is not welcome, for it comes before a death or a storm."
+      - "It is taken as a warning. A death or a storm has followed close on most of its visits."
+  mournful:
+    temper:
+      - "It takes no notice of the living and seems only to grieve."
+      - "It neither helps nor harms. Those who have seen it close say it seems to be grieving."
+  misleading:
+    temper:
+      - "It leads travelers astray, and the district has buried more than one who followed it."
+      - "It is a deceiver. It draws travelers off the road and leaves them where they cannot find their way."
+  vengeful:
+    temper:
+      - "It means harm, and the old settlers hold that it means harm to one family above all."
+      - "It is hostile. Stock have died where it was seen, and the #family# family have had more than their share of misfortune."
+  territorial:
+    temper:
+      - "It keeps its ground and drives off those who linger there."
+      - "It suffers no one to stay long at #place_short#, and those who try leave sooner than they meant to."
+
+conditions:
+  before_blizzard:  {when: [in the hour before a blizzard, when a blizzard is coming but not yet come], past: [in the hour before a blizzard, with a blizzard coming on]}
+  crusted_snow:     {when: [on clear nights when the snow is crusted, on cold clear nights with a crust on the snow], past: [on a clear night with a crust on the snow, on a cold clear night when the snow was crusted]}
+  spring_rise:      {when: [during high water in the spring rise, when the river is up in the spring], past: [during the high water in the spring, when the river was up in the spring]}
+  anniversary:      {when: [on the anniversary of the death, on the night of the year it died], past: [on the anniversary of the death, on the night of the year it died]}
+  drought_noon:     {when: [at noon in a drought summer, at the height of the day in a dry year], past: [at noon in the dry summer, at the height of a dry day]}
+  smoke_haze:       {when: [when smoke from a distant fire hangs in the valley, when there is smoke on the wind from some fire out of sight], past: [when smoke from a fire somewhere hung in the valley, with smoke on the wind from a fire out of sight]}
+  haying:           {when: [at haying time, while the hay is being put up], past: [while the hay was being put up, at haying time]}
+  threshing:        {when: [at threshing time, while the threshing crews are in the district], past: [while the threshing crew was in, at threshing time]}
+  asks_the_way:     {when: [when a traveler stops to ask the way, when someone is lost and asks the road], past: [after a traveler had stopped to ask the way, when a stranger stopped to ask the road]}
+  wind_drops:       {when: [when the wind drops at dusk, in the stillness after the wind goes down at evening], past: [when the wind dropped at dusk, in the stillness after the wind went down]}
+  lamp_unlit:       {when: [when the lamp is not lit at dusk, when a house is left dark at nightfall], past: [when the lamp had not been lit at dusk, with the house still dark at nightfall]}
+  stock_after_dark: {when: [when stock are watered after sundown, when the stock are brought to water after dark], past: [when the stock were brought to water after dark, watering stock after sundown]}
+  heat_lightning:   {when: [under heat lightning, on nights of heat lightning with no thunder], past: [under heat lightning, on a night of heat lightning with no thunder]}
+  train_whistle:    {when: [when the night train whistles for the crossing, when the late train sounds for the crossing], past: [when the night train whistled for the crossing, just as the late train sounded for the crossing]}
+  windmill_stops:   {when: [when the windmill stops turning, on the rare still nights when the mill stands idle], past: [when the windmill stopped turning, on a still night with the mill standing idle]}
+
+signs:
+  horses_balk:    {now: horses balk and will not go on, then: the horses balked and would not go on}
+  dogs_silent:    {now: the dogs go silent, then: the dogs went silent}
+  river_mud:      {now: there is a smell of river mud, then: there was a smell of river mud}
+  wet_tracks:     {now: wet footprints appear on dry boards, then: there were wet footprints on the dry boards}
+  frost_inside:   {now: frost forms on the inside of the window glass, then: frost came on the inside of the glass}
+  breath_shows:   {now: breath shows in a warm room, then: breath showed in a warm room}
+  scorched_grass: {now: there is a smell of scorched grass, then: there was a smell of scorched grass}
+  fine_ash:       {now: fine ash settles on the sill, then: there was fine ash on the sill in the morning}
+  lamp_leans:     {now: the lamp flame leans toward the door, then: the lamp flame leaned toward the door}
+  harness_bells:  {now: there is a jingle of harness, then: we heard harness jingling}
+  sand_drifts:    {now: sand drifts against the door when no wind blows, then: sand drifted against the door with no wind}
+  larks_stop:     {now: the meadowlarks stop singing, then: the meadowlarks stopped}
+  clock_stops:    {now: the clock stops, then: the clock stopped}
+  iron_taste:     {now: there is a taste of iron in the mouth, then: there was a taste of iron in the mouth}
+  cattle_bunch:   {now: the cattle drift and bunch against the fence, then: the cattle bunched against the fence}
+  grass_parts:    {now: the grass lies flat in a path though nothing has passed, then: the grass lay down in a path with nothing on it}
+  wire_sparks:    {now: sparks jump along the wire, then: sparks jumped along the wire}
+  dust_teeth:     {now: there is dust in the teeth, then: there was dust in the teeth}
+  coyotes_hush:   {now: the coyotes hush all at once, then: the coyotes hushed all at once}
+  grave_cold:     {now: a cold rises from the ground, then: a cold came up out of the ground}
+  heat_on_neck:   {now: a heat comes on the back of the neck like an open stove, then: there was a heat on the back of the neck like an open stove door}
+
+remedy:
+  lamp_window:
+    markers: [lamp burning in the window]
+    do: ["Keep a lamp burning in the window, and it will pass the house by.", "A lamp burning in the window is courtesy enough; it is said to look for one."]
+    did: [kept a lamp burning in the window after that]
+  school_bell:
+    markers: [schoolhouse bell]
+    do: ["Ring the schoolhouse bell until it passes.", "The schoolhouse bell is rung, steadily, until it has gone by."]
+    did: [rang the schoolhouse bell until it went]
+  horseshoe:
+    markers: [horseshoe]
+    do: ["Nail a horseshoe over the door, open end up, so the luck does not run out.", "A horseshoe over the door, open end up, keeps it from the house."]
+    did: [nailed a horseshoe over the door]
+  salt_sill:
+    markers: [salt]
+    do: ["Lay a line of salt along the sill, unbroken, before dark.", "It will not cross an unbroken line of salt laid along the sill."]
+    did: [laid salt along the sill]
+  steel_threshold:
+    markers: [steel, scythe]
+    do: ["Lay steel across the threshold, a knife or a scythe blade, and it will not come in.", "Steel across the threshold, as the old people did it, a knife or a scythe blade."]
+    did: [laid a scythe blade across the threshold]
+  blessed_herbs:
+    markers: [Feast of the Assumption, herbs]
+    do: ["Hang a wreath of herbs blessed on the Feast of the Assumption over the door.", "The wreath of herbs blessed at the Feast of the Assumption, hung over the door, keeps it off."]
+    did: [hung the blessed herbs over the door]
+  three_kings:
+    markers: [Three Kings, Epiphany]
+    do: ["Chalk the initials of the Three Kings over the door at Epiphany, and renew them every year.", "The Three Kings' initials, chalked over the door at Epiphany, are held to keep it out."]
+    did: [chalked the Three Kings over the door]
+  coat_inside_out:
+    markers: [inside out]
+    do: ["Turn your coat inside out and walk on, and it will lose you.", "The cure is to turn the coat inside out; it cannot follow a man whose coat is turned."]
+    did: [turned my coat inside out]
+  pray_for_soul:
+    markers: [prayer for the soul, have a Mass, a Mass said]
+    do: ["Say a prayer for the soul and promise it a Mass, and keep the promise.", "It asks for prayers. Say one for the soul and have a Mass said, and it will rest a while."]
+    did: [said a prayer for the soul and had a Mass said]
+  proper_burial:
+    markers: [proper burial, properly buried]
+    do: ["Find the bones and give them a proper burial with a marker. Nothing less has ever served.", "It will not rest until the bones are found and properly buried under a marker."]
+    did: [went looking for the bones]
+  marked_grave:
+    markers: [stone on the grave]
+    do: ["Set a stone on the grave each time you pass.", "Those who pass set a stone on the grave, and it lets them go by."]
+    did: [set a stone on the grave]
+  fireguard:
+    markers: [fireguard]
+    do: ["Plough a fireguard around the house and keep it clean of weeds.", "A fireguard ploughed around the buildings, kept clean, is the only proof against it."]
+    did: [ploughed a fireguard around the house]
+  never_answer:
+    markers: [never answer, own name, do not answer it]
+    do: ["Never answer it, and never say your own name aloud where it can hear.", "Do not answer it. Above all do not tell it your own name."]
+    did: [did not answer]
+  do_not_follow:
+    markers: [do not follow]
+    do: ["Do not follow it, however near it seems.", "The only rule is not to follow it, however near it seems or however familiar."]
+    did: [did not follow it]
+  cross_water:
+    markers: [running water]
+    do: ["Cross running water and it cannot come after you.", "It will not cross running water; get #the_river# between you and it."]
+    did: ["crossed #the_river# and it came no farther"]
+  leave_gate:
+    markers: [as you found it, as you find them]
+    do: ["Leave every gate as you found it.", "Leave the gates as you find them, open or shut, and it will let you be."]
+    did: [left the gates as I found them]
+  return_it:
+    markers: [put the thing back]
+    do: ["Put the thing back where it was taken from.", "Whatever was taken away must be put back where it was, or there will be no peace."]
+    did: [put the thing back where it came from]
+  stop_mill:
+    markers: [tie the windmill off, tie off the mill]
+    do: ["Tie the windmill off and let the tank go dry for a night.", "Tie off the mill and let the tank go dry one night, and it will be quiet for a season."]
+    did: [tied the windmill off]
+  water_for_dead:
+    markers: [cup of water]
+    do: ["Leave a cup of water on the step at night.", "A cup of water left on the step at night is all it asks."]
+    did: [left a cup of water on the step]
+  stay_inside:
+    markers: [door barred]
+    do: ["Stay indoors with the door barred until morning.", "There is nothing to be done but stay in with the door barred until it is light."]
+    did: [stayed in with the door barred]
+
+kind:
+  revenant: {noun: [revenant, restless ghost], short: [it]}
+  light:    {noun: [light, wisp], short: [the light]}
+  spirit:   {noun: [spirit, spirit of place], short: [it]}
+  haunt:    {noun: [haunted place, haunting], short: [it]}
+
+region:
+  sandhills:
+    rivers: [Dismal River, Middle Loup, North Loup, Calamus, Snake River, Cedar River]
+    places: [the hay meadow, the lake shore, the line camp, the windmill at the south pasture, the valley below the big hill, the old trail across the hills]
+  platte:
+    rivers: [Platte, Wood River, Prairie Creek, Elm Creek, Buffalo Creek]
+    places: [the island ford, the old trail crossing, the section house, the bottom road, the bluffs above the river]
+  smoky_hill:
+    rivers: [Smoky Hill River, Saline River, Big Creek, Hackberry Creek]
+    places: [the chalk bluffs, the stage station, the creek crossing, the depot siding, the dry wash]
+  flint_hills:
+    rivers: [Cottonwood River, Diamond Creek, Fox Creek, Verdigris River]
+    places: [the stone corral, the limestone ledge, the schoolhouse road, the cattle pens at the siding, the high pasture]
+  dakota:
+    rivers: [James River, Vermillion River, Sheyenne River, Elm River]
+    places: [the slough, the section line road, the claim on the coteau, the grain elevator road, the lake shore]
+  high_plains:
+    rivers: [South Platte, Arikaree River, Republican River, Frenchman Creek]
+    places: [the dry table, the stage road, the line camp, the breaks above the creek, the water hole]
+
+community:
+  anglo:
+    people: [the old settlers, the Yankee families]
+    given_m: [John, William, James, Thomas, Samuel]
+    given_f: [Mary, Sarah, Martha, Eliza, Hattie]
+    surnames: [Whitcomb, Barlow, Haskins, Pruitt, Kimball, Crane, Talbot, Doty, Sayre, Fenn]
+    term: {revenant: [the haint, the walker], light: [the spook light, the jack-o'-lantern], spirit: [the old man of the weather, the thing in the wind], haunt: [the bad place, the spook house]}
+  cattlemen:
+    people: [the cow outfits, the cowhands]
+    given_m: [Jim, Bill, Charley, Tom, Frank, Ed, Hank, Joe]
+    given_f: [Nell, Kate]
+    surnames: [Moorhouse, Tolliver, Lusk, Weddle, Garnett, Brumley, Hollis]
+    term: {revenant: [the drag rider, the night herder], light: [the ghost light, the herd light], spirit: [the dry wind, the devil wind], haunt: [the bad crossing, the hoodoo place]}
+  irish:
+    people: [the Irish families, the Irish section hands]
+    given_m: [Michael, Patrick, Timothy, Cornelius]
+    given_f: [Bridget, Johanna, Margaret, Honora]
+    surnames: [Fahey, Dunleavy, Moriarty, Quinlan, Heaney, Coakley, Breen]
+    term: {revenant: [the taibhse, the fetch], light: [the lantern man, the will-o'-the-wisp], spirit: [the sí gaoithe, the fairy wind], haunt: [the bad place, the gentle place]}
+  swedish:
+    people: [the Swedish settlers]
+    given_m: [Anders, Nils, Johan, Olof, Sven]
+    given_f: [Karin, Brita, Kerstin]
+    surnames: [Lindqvist, Holmberg, Ekstrom, Sandahl, Norlin, Bergquist, Wahlgren]
+    term: {revenant: [gasten, the gast], light: [lyktgubben, the lantern man], spirit: [the rå, the keeper], haunt: [spöket, the spook]}
+  czech:
+    people: [the Bohemian settlers, the Czech families]
+    given_m: [Václav, Josef, František, Jan, Antonín]
+    given_f: [Marie, Anna, Rosalie]
+    surnames: [Hrabák, Kovář, Dvořák, Pecha, Sedláček, Brabec, Šimek, Puncochar]
+    term: {revenant: [strašidlo, the strašidlo], light: [bludička, the bludička], spirit: [hejkal, the hejkal], haunt: [strašidlo, the spook]}
+    term_by_manifestation: {noon_woman: [polednice, the noon woman]}
+  german:
+    people: [the German settlers, the German families]
+    given_m: [Heinrich, Friedrich, Johann, August, Carl]
+    given_f: [Wilhelmina, Katharina, Louisa]
+    surnames: [Brandt, Mehring, Schuetz, Vogt, Kessler, Ahlers, Rademacher]
+    term: {revenant: [der Wiedergänger, the walker], light: [das Irrlicht, the false light], spirit: [die Windsbraut, the wind's bride], haunt: [der Spuk, the spook]}
+    term_by_manifestation: {noon_woman: [die Mittagsfrau, the noon woman]}
+  volga:
+    people: [the Volga German families, the Russian Germans]
+    given_m: [Konrad, Adam, Johannes, Peter]
+    given_f: [Christina, Elisabeth, Magdalena]
+    surnames: [Herrmann, Schmidt, Dreiling, Pfannenstiel, Basgall, Leiker, Rupp]
+    term: {revenant: [der Wiedergänger, the walker], light: [das Irrlicht, the false light], spirit: [die Windsbraut, the wind's bride], haunt: [der Spuk, the spook]}
+    term_by_manifestation: {noon_woman: [die Mittagsfrau, the noon woman]}
+  danish:
+    people: [the Danish settlers]
+    given_m: [Hans, Jens, Niels, Peder]
+    given_f: [Karen, Mette, Ane]
+    surnames: [Rasmussen, Kjeldgaard, Nygaard, Holst, Bech, Sondergaard]
+    term: {revenant: [gengangeren, the walker], light: [lygtemanden, the lantern man], spirit: [vætten, the keeper], haunt: [spøgelset, the spook]}
+  norwegian:
+    people: [the Norwegian settlers]
+    given_m: [Ole, Lars, Knut, Halvor, Torger]
+    given_f: [Ingeborg, Gunhild, Sigrid]
+    surnames: [Halvorsen, Tveit, Rudland, Moe, Aasland, Brekke, Skjervold]
+    term: {revenant: [gjengangeren, the draug], light: [lyktemannen, the lantern man], spirit: [vetten, the keeper], haunt: [spøkelset, the spook]}
+  exoduster:
+    people: [the colonists of the Exodus settlements, the families who came up from Kentucky and Tennessee]
+    given_m: [Moses, Isaiah, Reuben, Silas]
+    given_f: [Hannah, Lucinda, Dinah, Easter]
+    surnames: [Freeman, Lassiter, Napier, Garland, Overstreet, Pettiford]
+    term: {revenant: [the haint, the walking dead], light: [the jack-muh-lantern, the jacky lantern], spirit: [the thing in the wind, the old weather], haunt: [the haint place, the bad ground]}
+  hispano:
+    people: [the Hispano families, the sheep men from the south]
+    given_m: [José, Juan, Tomás, Ignacio]
+    given_f: [María, Guadalupe, Rosario, Refugio]
+    surnames: [Archuleta, Trujillo, Baca, Gallegos, Maestas, Vigil]
+    term: {revenant: [el ánima en pena, the soul in torment], light: [la luz, the light], spirit: [el mal aire, the bad air], haunt: [el espanto, the fright]}
+
+era:
+  trail:
+    roles: [a freighter, a bullwhacker, an emigrant, a stage driver, a trader]
+    roles_f: [an emigrant, a laundress at the stage station]
+    light_src: [lantern, tallow candle]
+    rig: [ox team, freight wagon]
+  homestead:
+    roles: [a homesteader, a section hand, a cowhand, a surveyor, a schoolteacher]
+    roles_f: [a homesteader, a schoolteacher]
+    light_src: [lantern, coal-oil lamp]
+    rig: [wagon, spring wagon]
+  hard_winters:
+    roles: [a homesteader, a cowhand, a schoolteacher, a mail carrier, a hired hand]
+    roles_f: [a homesteader, a schoolteacher]
+    light_src: [lantern, coal-oil lamp]
+    rig: [wagon, buggy]
+  settled:
+    roles: [a farmer, a rural mail carrier, a schoolteacher, a cream hauler, a hired hand]
+    roles_f: [a farmer, a schoolteacher, a telephone operator]
+    light_src: [lantern, coal-oil lamp, carbide lamp]
+    rig: [buggy, wagon, Model T]
+  dry_years:
+    roles: [a farmer, a county agent, a rural mail carrier, a trucker, a schoolteacher]
+    roles_f: [a farmer, a schoolteacher, a home demonstration agent]
+    light_src: [lantern, flashlight, coal-oil lamp]
+    rig: [Ford, truck, wagon]
+
+# ---------------------------------------------------------------------------
+# Templates. These carry structure and voice only; no folklore of their own.
+# The voice is a dry survey that lets the testimony carry the dread.
+
+templates:
+  common_name:
+    revenant: ["The #epithet# #noun#", "The #noun# at #place_short#", "#family#'s #noun#", "The #place_short# #noun#"]
+    light: ["The #epithet# #noun#", "The #noun# at #place_short#", "#family#'s #noun#", "The #place_short# #noun#"]
+    spirit: ["The #epithet# #noun#", "The #noun# of #place_short#", "The #place_short# #noun#"]
+    haunt: ["The #ohnoun# at #place_short#", "#family#'s #ohnoun#", "The #epithet# #ohnoun#", "The #place_short# #ohnoun#"]
+
+  local_name:
+    - "Among #people# it is *#term#*."
+    - "#people.capitalize# call it *#term#*."
+    - "The local name, among #people#, is *#term#*."
+    - "It is known to #people# as *#term#*, and by that name it is recorded here."
+
+  description:
+    - "#kind_noun.a.capitalize# of #region#, manifesting as #seen#. It is met with #when#. #signs_now.capitalize#. #temper#"
+    - "It appears #when#, as #seen#. #signs_now.capitalize#. #temper#"
+    - "#temper# It is #kind_noun.a# of #region#, and shows itself as #seen#, most often #when#. Its presence is known because #signs_now#."
+    - "Observers in #region# agree on its form: #seen#. They agree also on the occasion, which is #when#, and on the signs, which are that #signs_now#. #temper#"
+
+  first_account:
+    - "The earliest account dates from #year#, when #origin_account#. The first to report it was #witness#, who said: \"#testimony#\""
+    - "#witness.capitalize# gave the first account in #year#. \"#testimony#\" By the common understanding of the district, #origin_account#."
+    - "It is traced to #year#. #origin_account.capitalize#. Within the year #witness# reported the following: \"#testimony#\""
+    - "\"#testimony#\" So #witness# reported it in #year#. The explanation given locally is that #origin_account#."
+
+  precaution:
+    - "#precaution#"
+    - "Recommended precaution: #precaution#"
+    - "#precaution# This is the counsel of #people#, and it has not been known to fail."
+    - "#precaution# Those who have neglected it have generally had cause to regret it."

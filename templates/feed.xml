@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>{{ site.title }}</title>
+  <link>{{ base }}</link>
+  <atom:link href="{{ base }}feed.xml" rel="self" type="application/rss+xml"/>
+  <description>{{ site.subtitle }}</description>
+  <language>en-us</language>
+{% for a in items %}
+  <item>
+  {% if a.kind == "entity" %}
+    <title>New entry: {{ a.entity.entry.common_name }}</title>
+    <link>{{ base }}{{ a.entity.url }}</link>
+    <guid isPermaLink="false">ghostlight-{{ a.entity.id }}</guid>
+    <description>{{ a.entity.entry.description }}</description>
+  {% else %}
+    <title>Sighting: {{ a.entity.entry.common_name }}, {{ voices[a.s.voice].label }} of {{ a.s.year }}</title>
+    <link>{{ base }}{{ a.entity.url }}#{{ a.s.id }}</link>
+    <guid isPermaLink="false">ghostlight-{{ a.s.id }}</guid>
+    <description>{{ a.s.text }}</description>
+  {% endif %}
+    <pubDate>{{ rfc822(a.date) }}</pubDate>
+  </item>
+{% endfor %}
+</channel>
+</rss>

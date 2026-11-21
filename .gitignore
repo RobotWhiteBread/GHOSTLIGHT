@@ -44,3 +44,6 @@ desktop.ini
 # Editors
 .vscode/
 .idea/
+
+# Built site (rebuilt by the workflow)
+_site/

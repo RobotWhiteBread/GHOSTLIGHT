@@ -1,0 +1,56 @@
+{
+  "id": "GL-0001",
+  "created": "2026-11-21",
+  "seed": "42893ca607ed6377",
+  "rules": "great-plains-1850-1930@1",
+  "traits": {
+    "kind": "revenant",
+    "region": "platte",
+    "era": "homestead",
+    "community": "anglo",
+    "origin": "searcher",
+    "manifestation": "phantom_team",
+    "disposition": "warning",
+    "conditions": "wind_drops",
+    "signs": [
+      "breath_shows",
+      "clock_stops",
+      "dust_teeth"
+    ],
+    "remedy": "do_not_follow"
+  },
+  "facts": {
+    "year": 1876,
+    "family": "Sayre",
+    "river": "Platte",
+    "place": "the bottom road near the Sayre place",
+    "place_short": "Sayre Place",
+    "dead": {
+      "name": "Samuel Crane",
+      "first": "Samuel",
+      "surname": "Crane",
+      "role": "a cowhand",
+      "sex": "m"
+    },
+    "witness": {
+      "name": "Mary Haskins",
+      "first": "Mary",
+      "surname": "Haskins",
+      "role": "a homesteader",
+      "sex": "f"
+    },
+    "light_src": "lantern",
+    "rig": "wagon",
+    "people": "the Yankee families",
+    "term": "the haint"
+  },
+  "entry": {
+    "common_name": "The Sayre Place Team",
+    "local_name": "Among the Yankee families it is *the haint*.",
+    "description": "It does no harm of itself, but it is not welcome, for it comes before a death or a storm. It is a revenant of the Platte River valley, and shows itself as the sound of a team and wagon passing close by, though nothing is ever seen, most often in the stillness after the wind goes down at evening. Its presence is known because there is dust in the teeth, breath shows in a warm room, and the clock stops.",
+    "first_account": "A homesteader named Mary Haskins gave the first account in 1876. \"We heard a wagon pull into the yard and stop. My father went out with the lantern and there were no tracks at all.\" By the common understanding of the district, a cowhand named Samuel Crane went out with a lantern to find a neighbor lost in the snow and never came back; the neighbor walked in at dawn.",
+    "precaution": "The only rule is not to follow it, however near it seems or however familiar. Those who have neglected it have generally had cause to regret it.",
+    "prose_attempt": 0
+  },
+  "slug": "the-sayre-place-team"
+}

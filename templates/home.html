@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% from "_activity.html" import item %}
+{% block body %}
+<section class="lede">
+  <p>A field guide to the restless dead, the lights, the spirits of weather and the haunted places of the Great Plains, as the settlers knew them between 1850 and 1930. It is compiled by a folklore grammar that enters a new entity every other week and keeps gathering reports of the old ones, so the guide grows thicker while no one is looking.</p>
+  <p class="counts">{{ n_ents }} entit{{ "y" if n_ents == 1 else "ies" }} on file. {{ n_sights }} sighting{{ "" if n_sights == 1 else "s" }} recorded.</p>
+</section>
+
+{% if newest %}
+{% set e = newest[0] %}
+<section class="feature">
+  <h2 class="kicker">Latest entry</h2>
+  <a class="plate" href="{{ root }}{{ e.url }}">{{ e.plate }}</a>
+  <h3><a href="{{ root }}{{ e.url }}">{{ e.entry.common_name }}</a></h3>
+  <p>{{ e.entry.description | md }}</p>
+</section>
+{% endif %}
+
+<section>
+  <h2 class="kicker">Recent activity</h2>
+  <ul class="activity">{% for a in activity %}{{ item(a, root) }}{% endfor %}</ul>
+  <p><a href="{{ root }}recent.html">All activity</a></p>
+</section>
+
+<section>
+  <h2 class="kicker">The entries</h2>
+  <ul class="cards">
+  {% for e in newest %}
+    <li><a href="{{ root }}{{ e.url }}"><span class="mini">{{ e.plate }}</span><span class="cardname">{{ e.entry.common_name }}</span>
+      <span class="muted">{{ e.id }}, {{ e.dossier | length }} sighting{{ "" if e.dossier|length == 1 else "s" }}</span></a></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% from "_activity.html" import item %}
+{% block title %}Recent activity | {{ site.title }}{% endblock %}
+{% block body %}
+<h1>Recent activity</h1>
+<p>Everything reported to the guide, newest first: new entries, and new accounts of old ones. The date on the left is when the report reached the guide; the year on the right is when it was set down.</p>
+<ul class="activity">{% for a in activity %}{{ item(a, root) }}{% endfor %}</ul>
+{% endblock %}

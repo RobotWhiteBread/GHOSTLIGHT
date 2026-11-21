@@ -1,0 +1,96 @@
+name: accrete
+
+# Weekly: wake the guide, add what is due, prove the canon is still sound and
+# untouched, commit, and redeploy. Also rebuilds the site on every push.
+
+on:
+  schedule:
+    - cron: "17 14 * * 1"   # Mondays, 14:17 UTC (8:17 or 9:17 in Lincoln)
+  workflow_dispatch:
+    inputs:
+      force_entity:
+        description: "Add an entity this run even if one is not due"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ghostlight
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Tick
+        run: |
+          if [ "${{ inputs.force_entity }}" = "true" ]; then
+            python -m ghostlight tick --force-entity
+          else
+            python -m ghostlight tick
+          fi
+      - name: Canon is append-only
+        run: python -m ghostlight guard --base HEAD
+      - name: Canon is consistent
+        run: python -m ghostlight check
+      - name: Commit
+        run: |
+          git config user.name "ghostlight"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add canon/
+          if git diff --cached --quiet; then
+            echo "nothing new this week"
+          else
+            git commit -m "Accrete $(date -u +%F)"
+            git push
+          fi
+
+  guard:
+    # Any push that touches canon/ must only add files.
+    if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m ghostlight guard --base ${{ github.event.before }}
+      - run: python -m ghostlight check
+
+  deploy:
+    needs: [tick, guard]
+    if: always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main   # pick up the commit the tick just made
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m ghostlight build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: pages
+        uses: actions/deploy-pages@v4

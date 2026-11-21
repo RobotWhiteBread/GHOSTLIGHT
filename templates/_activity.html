@@ -1,0 +1,14 @@
+{% macro item(a, root) %}
+<li class="act act-{{ a.kind }}">
+  <time datetime="{{ a.date }}">{{ a.date }}</time>
+  {% if a.kind == "entity" %}
+    <span class="tag">New entry</span>
+    <a href="{{ root }}{{ a.entity.url }}">{{ a.entity.entry.common_name }}</a>
+    <span class="muted">{{ label("kind", a.entity.traits.kind) }}, {{ label("region", a.entity.traits.region) }}</span>
+  {% else %}
+    <span class="tag">Sighting</span>
+    <a href="{{ root }}{{ a.entity.url }}#{{ a.s.id }}">{{ a.entity.entry.common_name }}</a>
+    <span class="muted">a {{ voices[a.s.voice].label }} of {{ a.s.year }}</span>
+  {% endif %}
+</li>
+{% endmacro %}

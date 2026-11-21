@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.title }}{% endblock %}</title>
+<meta name="description" content="{{ site.subtitle }}">
+<link rel="stylesheet" href="{{ root }}static/style.css">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ root }}feed.xml">
+</head>
+<body>
+<div class="bulb" aria-hidden="true"></div>
+<header class="masthead">
+  <a class="wordmark" href="{{ root }}index.html">{{ site.title }}</a>
+  <p class="subtitle">{{ site.subtitle }}</p>
+  <nav>
+    <a href="{{ root }}recent.html">Recent activity</a>
+    <a href="{{ root }}index/region.html">Region</a>
+    <a href="{{ root }}index/era.html">Era</a>
+    <a href="{{ root }}index/manifestation.html">Manifestation</a>
+    <a href="{{ root }}index/kind.html">Kind</a>
+    <a href="{{ root }}about.html">About</a>
+    <a href="{{ root }}feed.xml">RSS</a>
+  </nav>
+</header>
+<main>
+{% block body %}{% endblock %}
+</main>
+<footer>
+  <p>The guide is never finished. A new entity is entered every other week, and sightings of old ones arrive every week.</p>
+  <p>Every entity here is invented. Last built {{ built }}.</p>
+</footer>
+</body>
+</html>

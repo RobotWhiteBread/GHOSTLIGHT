@@ -1,0 +1,19 @@
+# GHOSTLIGHT configuration
+
+# The root of every seed. Change it and the future changes; the past does not,
+# because every entity stores the exact seed it was made from.
+master_seed: ghostlight-great-plains-1850-1930
+
+cadence:
+  # A new entity when this many days have passed since the last one.
+  # With a weekly tick that means one every other week.
+  entity_every_days: 14
+  # Sightings added per weekly tick: one of these, plus one more for every
+  # `extra_per` entities on file, so dossiers keep thickening as the guide grows.
+  sightings_base: [1, 1, 2, 2, 3]
+  extra_per: 10
+
+site:
+  title: GHOSTLIGHT
+  subtitle: A field guide to the hauntings of the Great Plains, 1850 to 1930
+  base_url: https://robotwhitebread.github.io/ghostlight/

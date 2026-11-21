@@ -1,0 +1,705 @@
+# GHOSTLIGHT folklore rules: the Great Plains, 1850 to 1930
+#
+# This file is the project. Edit it freely; the code only reads it.
+#
+# Structure
+#   order   the sequence in which traits are drawn. A rule can only be
+#           checked once every trait it mentions has been drawn, so put
+#           traits that constrain others earlier.
+#   multi   traits that take several values at once, with [min, max].
+#   traits  every trait and every value it can take. Values carry:
+#             label    the plain phrase used in particulars tables
+#             tags     words the rules reason about (water, cold, iron...)
+#             weight   optional, default 1. Higher is drawn more often
+#             years    optional [first, last] window when it can exist
+#             plus any list fields a rule below refers to
+#   rules   the constraints. Every rule has an id, a name, a why (shown on
+#           the site), and a type. Types:
+#             contains    value(trait)[field] must list the key chosen for `of`
+#             features    value(trait)[field] must all appear in value(of)[of_field]
+#             years       value(trait).years must overlap value(of).years
+#             needs_tags  if value(trait)[field] is set, the traits in `of`
+#                         must carry at least one of those tags between them
+#             opposed     no tag of `a` may be opposed to a tag of `b`
+#             share       at least `min` values of `trait` must share one of
+#                         `tags` with the traits in `with` (values tagged
+#                         `any` always count)
+#             when        if `when` matches, `then` must (require) or must
+#                         not (forbid) match
+#
+# A note on sources. These are invented entities in the manner of settler
+# folklore of the plains. Indigenous sacred beings and ceremonies are
+# deliberately left out: they are not ours to generate.
+
+meta:
+  id: great-plains-1850-1930
+  title: The Great Plains, 1850 to 1930
+  version: 1
+
+order: [kind, region, era, community, origin, manifestation, disposition, conditions, signs, remedy]
+
+multi:
+  signs: [2, 3]
+
+opposed_pairs: &opposed
+  - [water, fire]
+  - [cold, heat]
+  - [cold, fire]
+  - [water, drought]
+
+opposed_full: &opposed_full
+  - [water, fire]
+  - [cold, heat]
+  - [cold, fire]
+  - [water, drought]
+  - [night, day]
+  - [summer, cold]
+
+traits:
+
+  kind:
+    revenant: {label: a revenant of the dead, tags: [dead], weight: 3}
+    light:    {label: a light or wisp, tags: [light], weight: 2}
+    spirit:   {label: a spirit of land or weather, tags: [land], weight: 2}
+    haunt:    {label: a haunted object or place, tags: [thing], weight: 2}
+
+  region:
+    sandhills:
+      label: the Nebraska Sandhills
+      tags: [sand, wind, grass]
+      years: [1878, 1930]
+      features: [sand, lakes, river, ranching, wind]
+      communities: [anglo, cattlemen, irish, swedish, czech]
+    platte:
+      label: the Platte River valley
+      tags: [water, wind]
+      features: [river, trail, rail, farming, wind, lakes]
+      communities: [anglo, swedish, german, czech, irish, danish]
+    smoky_hill:
+      label: the Smoky Hill country of Kansas
+      tags: [stone, wind]
+      features: [river, trail, rail, farming, wind, stone, dry]
+      communities: [anglo, volga, exoduster, german, czech]
+    flint_hills:
+      label: the Flint Hills
+      tags: [stone, grass]
+      features: [stone, grass, ranching, river, farming, rail]
+      communities: [anglo, swedish, german, cattlemen]
+    dakota:
+      label: the Dakota prairie
+      tags: [cold, wind]
+      features: [farming, rail, wind, lakes, river, cold]
+      communities: [norwegian, volga, anglo, czech, german]
+    high_plains:
+      label: the High Plains
+      tags: [dry, wind]
+      features: [trail, ranching, wind, dry, rail, river]
+      communities: [anglo, cattlemen, hispano, german]
+
+  era:
+    trail:        {label: the trail years, years: [1850, 1866], tags: [trail]}
+    homestead:    {label: the railroad and homestead years, years: [1867, 1885], tags: [rail, farming]}
+    hard_winters: {label: the years of the hard winters, years: [1886, 1899], tags: [cold]}
+    settled:      {label: the settled years, years: [1900, 1916], tags: [home]}
+    dry_years:    {label: the wheat years and the dry years after, years: [1917, 1930], tags: [drought]}
+
+  community:
+    anglo:     {label: old-stock American settlers, years: [1850, 1930], weight: 2}
+    cattlemen: {label: the cow outfits, years: [1866, 1930]}
+    irish:     {label: Irish families and section hands, years: [1855, 1930]}
+    swedish:   {label: Swedish settlers, years: [1862, 1930]}
+    czech:     {label: Bohemian settlers, years: [1860, 1930]}
+    german:    {label: German settlers, years: [1855, 1930]}
+    volga:     {label: Volga German families, years: [1874, 1930]}
+    danish:    {label: Danish settlers, years: [1865, 1930]}
+    norwegian: {label: Norwegian settlers, years: [1868, 1930]}
+    exoduster: {label: the Black colonists of the Exodus settlements, years: [1877, 1930]}
+    hispano:   {label: Hispano sheep and freighting families, years: [1850, 1930]}
+
+  origin:
+    drowned_ford:
+      label: drowned at a ford in high water
+      kinds: [revenant, light]
+      tags: [water, death, lost]
+      needs: [river]
+    frozen_blizzard:
+      label: lost and frozen in a blizzard within sight of home
+      kinds: [revenant, light]
+      tags: [cold, death, lost, storm]
+      weight: 2
+    trail_cholera:
+      label: died of cholera on the trail and buried without a marker
+      kinds: [revenant]
+      tags: [disease, death, grave, trail]
+      needs: [trail]
+      years: [1850, 1869]
+    prairie_fire:
+      label: overtaken by a prairie fire
+      kinds: [revenant, light, spirit]
+      tags: [fire, death, heat]
+    claim_quarrel:
+      label: killed in a quarrel over a land claim
+      kinds: [revenant, haunt]
+      tags: [violence, death, land, grave]
+      needs: [farming]
+      years: [1862, 1912]
+    rail_accident:
+      label: killed laying or running the railroad
+      kinds: [revenant, light, haunt]
+      tags: [iron, death, accident]
+      needs: [rail]
+      years: [1865, 1930]
+    lightning_herd:
+      label: struck by lightning while riding night herd
+      kinds: [revenant, light]
+      tags: [storm, death, herd, fire]
+      needs: [ranching]
+      years: [1866, 1930]
+    thirst:
+      label: lost on the dry table and dead of thirst
+      kinds: [revenant, spirit]
+      tags: [drought, heat, death, lost]
+      needs: [dry]
+    stampede:
+      label: trampled in a night stampede
+      kinds: [revenant]
+      tags: [herd, death, violence, horse]
+      needs: [ranching]
+      years: [1866, 1900]
+    well_cavein:
+      label: buried when a dug well caved in
+      kinds: [revenant, haunt]
+      tags: [earth, water, death, grave]
+      needs: [farming]
+      years: [1860, 1925]
+    sod_collapse:
+      label: crushed when a sod roof gave way in the spring rains
+      kinds: [revenant, haunt]
+      tags: [earth, home, death]
+      years: [1860, 1915]
+    searcher:
+      label: went out with a lantern to find the lost and never came back
+      kinds: [light, revenant]
+      tags: [lost, cold, light, death]
+    wet_meadow:
+      label: rose from the wet meadows after a hard year
+      kinds: [light]
+      tags: [water, land]
+      needs: [lakes]
+    third_dry_summer:
+      label: came up out of the third dry summer running
+      kinds: [spirit]
+      tags: [drought, heat, land]
+    broken_sod:
+      label: woke when the sod was first broken
+      kinds: [spirit, haunt]
+      tags: [land, earth]
+      needs: [farming]
+    blowout:
+      label: lives in a blowout where the grass let go of the sand
+      kinds: [spirit]
+      tags: [sand, wind, land]
+      needs: [sand]
+    first_norther:
+      label: rides in on the first norther of the year
+      kinds: [spirit]
+      tags: [cold, wind, storm]
+    grasshopper_year:
+      label: came with the grasshoppers in the year they ate the country bare
+      kinds: [spirit]
+      tags: [swarm, drought, land]
+      needs: [farming]
+      years: [1873, 1877]
+    unhung_bell:
+      label: a church bell hauled overland and never hung
+      kinds: [haunt]
+      tags: [iron, sound]
+      years: [1860, 1925]
+    trail_fence:
+      label: a wire fence strung across an old trail
+      kinds: [haunt]
+      tags: [iron, trail, land]
+      needs: [trail]
+      years: [1874, 1930]
+    windmill_well:
+      label: a windmill raised over a well where a body was found
+      kinds: [haunt]
+      tags: [water, iron, wind, grave, death, windmill]
+      years: [1870, 1930]
+    blizzard_school:
+      label: a sod schoolhouse where the teacher kept the children through a blizzard
+      kinds: [haunt]
+      tags: [cold, home, storm]
+      years: [1870, 1930]
+    set_table:
+      label: a claim shanty abandoned with the table still set
+      kinds: [haunt]
+      tags: [home, lost]
+      needs: [farming]
+      years: [1870, 1915]
+    bone_pile:
+      label: a rick of buffalo bones gathered for the bone trade
+      kinds: [haunt, spirit]
+      tags: [bone, land]
+      years: [1872, 1890]
+
+  manifestation:
+    walker:
+      label: a figure walking at the edge of the lamplight
+      kinds: [revenant]
+      tags: [figure, night]
+    rider:
+      label: a rider who keeps pace with travelers just out of hail
+      kinds: [revenant]
+      tags: [figure, horse]
+      needs_origin: [herd, storm, lost, trail, violence, fire]
+    wet_figure:
+      label: a figure that stands dripping in a doorway
+      kinds: [revenant]
+      tags: [figure, water, night]
+      needs_origin: [water]
+    voice:
+      label: a voice calling a name across the snow or the grass
+      kinds: [revenant, spirit]
+      tags: [sound]
+    knocking:
+      label: knocking at a door or window from outside
+      kinds: [revenant, haunt]
+      tags: [sound, home]
+    phantom_team:
+      label: the sound of a team and wagon that is never seen
+      kinds: [revenant, haunt]
+      tags: [sound, trail, horse, night]
+      needs_origin: [trail, lost, violence, iron, home]
+    lantern:
+      label: a lantern swinging at the height of a walking man
+      kinds: [light, revenant]
+      tags: [light, figure, night]
+    ball_light:
+      label: a ball of light that rolls along the ground
+      kinds: [light]
+      tags: [light]
+    meadow_lights:
+      label: pale lights over the wet meadows
+      kinds: [light]
+      tags: [light, water]
+    fire_line:
+      label: a line of fire on the horizon that gives no smoke
+      kinds: [light, spirit]
+      tags: [light, fire, night]
+    whirlwind:
+      label: a whirlwind that travels against the wind
+      kinds: [spirit]
+      tags: [wind, sand]
+    ground_blizzard:
+      label: a ground blizzard on a still, clear night
+      kinds: [spirit]
+      tags: [cold, wind, night]
+    cold_patch:
+      label: a patch of air cold enough to show a horse's breath in August
+      kinds: [spirit, haunt, revenant]
+      tags: [cold, summer]
+    noon_woman:
+      label: a woman's shape standing in the shimmer of noon heat
+      kinds: [spirit]
+      tags: [heat, figure, day]
+    bell_ringing:
+      label: a bell ringing where no bell hangs
+      kinds: [haunt]
+      tags: [sound, iron]
+    returns:
+      label: the thing returns to where it stood, however far it is taken
+      kinds: [haunt]
+      tags: [thing]
+    wrong_water:
+      label: well water that comes up warm, or red, or tasting of iron
+      kinds: [haunt]
+      tags: [water, iron, windmill]
+    set_supper:
+      label: a table found laid for supper in an empty house
+      kinds: [haunt]
+      tags: [home]
+    singing_wire:
+      label: wire that sings in still air
+      kinds: [haunt]
+      tags: [iron, sound, wind]
+      years: [1874, 1930]
+
+  disposition:
+    guiding:
+      label: leads the lost toward shelter
+      tags: [benign]
+      needs_origin: [lost, cold, home, trail]
+    warning:
+      label: appears before a death or a storm, as a warning
+      tags: [portent]
+    mournful:
+      label: takes no notice of the living and seems only to grieve
+      tags: [indifferent]
+    misleading:
+      label: leads travelers astray
+      tags: [mischief]
+    vengeful:
+      label: means harm to the living, or to one family in particular
+      tags: [hostile]
+      needs_origin: [violence, grave, land, iron, bone]
+    territorial:
+      label: keeps its ground and drives off those who linger
+      tags: [hostile]
+
+  conditions:
+    before_blizzard:  {label: in the hour before a blizzard, tags: [cold, storm]}
+    crusted_snow:     {label: on clear nights when the snow is crusted, tags: [cold, night]}
+    spring_rise:      {label: during high water in the spring rise, tags: [water]}
+    anniversary:      {label: on the anniversary of the death, tags: [any], needs_origin: [death]}
+    drought_noon:     {label: at noon in a drought summer, tags: [heat, drought, day]}
+    smoke_haze:       {label: when smoke from a distant fire hangs in the valley, tags: [fire]}
+    haying:           {label: at haying time, tags: [grass, land, ranching, day, summer]}
+    threshing:        {label: at threshing time, tags: [land, farming, day, summer], needs_region: [farming]}
+    asks_the_way:     {label: when a traveler stops to ask the way, tags: [trail, lost]}
+    wind_drops:       {label: when the wind drops at dusk, tags: [wind]}
+    lamp_unlit:       {label: when the lamp is not lit at dusk, tags: [home, light, night]}
+    stock_after_dark: {label: when stock are watered after sundown, tags: [water, herd, night]}
+    heat_lightning:   {label: under heat lightning, tags: [storm, heat, light, night, summer]}
+    train_whistle:    {label: when the night train whistles for the crossing, tags: [iron, rail, night], needs_region: [rail]}
+    windmill_stops:   {label: when the windmill stops turning, tags: [wind, iron, water, windmill]}
+
+  signs:
+    horses_balk:    {label: horses balk and will not go on, tags: [any, horse]}
+    dogs_silent:    {label: the dogs go silent, tags: [any]}
+    river_mud:      {label: a smell of river mud, tags: [water]}
+    wet_tracks:     {label: wet footprints on dry boards, tags: [water, home]}
+    frost_inside:   {label: frost on the inside of the window glass, tags: [cold, home]}
+    breath_shows:   {label: breath shows in a warm room, tags: [cold]}
+    scorched_grass: {label: a smell of scorched grass, tags: [fire, grass]}
+    fine_ash:       {label: fine ash on the sill, tags: [fire, home]}
+    lamp_leans:     {label: the lamp flame leans toward the door, tags: [light, home]}
+    harness_bells:  {label: a jingle of harness, tags: [horse, trail, sound]}
+    sand_drifts:    {label: sand drifts against the door when no wind blows, tags: [sand, wind]}
+    larks_stop:     {label: the meadowlarks stop singing, tags: [land, grass]}
+    clock_stops:    {label: the clock stops, tags: [home, death]}
+    iron_taste:     {label: a taste of iron in the mouth, tags: [iron, water]}
+    cattle_bunch:   {label: the cattle drift and bunch against the fence, tags: [herd, storm]}
+    grass_parts:    {label: the grass lies flat in a path though nothing has passed, tags: [land, grass, wind]}
+    wire_sparks:    {label: sparks jump along the wire, tags: [storm, iron]}
+    dust_teeth:     {label: dust in the teeth, tags: [drought, sand, dry]}
+    coyotes_hush:   {label: the coyotes hush all at once, tags: [land, any]}
+    grave_cold:     {label: a cold that rises from the ground, tags: [cold, grave, earth]}
+    heat_on_neck:   {label: a heat on the back of the neck like an open stove, tags: [heat, fire]}
+
+  remedy:
+    lamp_window:
+      label: keep a lamp burning in the window
+      tags: [courtesy, light, home]
+    school_bell:
+      label: ring the schoolhouse bell until it passes
+      tags: [ward, sound]
+      years: [1870, 1930]
+    horseshoe:
+      label: nail a horseshoe over the door, open end up
+      tags: [ward, iron]
+    salt_sill:
+      label: lay a line of salt along the sill
+      tags: [ward, home]
+    steel_threshold:
+      label: lay steel across the threshold, a knife or a scythe blade
+      tags: [ward, iron, any]
+      communities: [swedish, norwegian, danish]
+    blessed_herbs:
+      label: hang a wreath of herbs blessed on the Feast of the Assumption over the door
+      tags: [ward, home, any]
+      communities: [czech]
+    three_kings:
+      label: chalk the initials of the Three Kings over the door at Epiphany
+      tags: [ward, home, any]
+      communities: [german, volga, czech]
+    coat_inside_out:
+      label: turn your coat inside out and walk on
+      tags: [ward, lost]
+      communities: [irish, anglo, exoduster]
+    pray_for_soul:
+      label: say a prayer for the soul and promise it a Mass
+      tags: [release, any]
+      communities: [hispano, irish, czech, german]
+      needs_origin: [death]
+    proper_burial:
+      label: find the bones and give them a proper burial with a marker
+      tags: [release, any]
+      needs_origin: [grave, lost, water]
+    marked_grave:
+      label: set a stone on the grave each time you pass
+      tags: [courtesy, release, any]
+      needs_origin: [grave, death]
+    fireguard:
+      label: plough a fireguard around the house and keep it clean
+      tags: [ward, land]
+      needs_region: [farming]
+      needs_origin: [fire, heat, drought]
+    never_answer:
+      label: never answer when it calls, and never say your own name aloud
+      tags: [avoidance, sound]
+      needs_story: [sound]
+    do_not_follow:
+      label: do not follow it, however near it seems
+      tags: [avoidance, light, lost]
+      needs_story: [light, figure]
+    cross_water:
+      label: cross running water and it cannot come after you
+      tags: [avoidance, water]
+      needs_region: [river]
+    leave_gate:
+      label: leave every gate as you found it
+      tags: [courtesy, land]
+      communities: [cattlemen, anglo]
+    return_it:
+      label: put the thing back where it was taken from
+      tags: [release, thing]
+    stop_mill:
+      label: tie the windmill off and let the tank go dry for a night
+      tags: [ward, water, wind]
+      needs_story: [windmill]
+    water_for_dead:
+      label: leave a cup of water on the step at night
+      tags: [courtesy, water]
+    stay_inside:
+      label: stay indoors with the door barred until morning
+      tags: [avoidance, home]
+
+rules:
+
+  # --- what kind of thing it is ---
+  - id: R01
+    name: Origin suits the kind of entity
+    why: A drowning makes a revenant or a light, not a haunted bell.
+    type: contains
+    trait: origin
+    field: kinds
+    of: kind
+  - id: R02
+    name: Manifestation suits the kind of entity
+    why: Spirits of weather do not knock at the door; houses do not ride horses.
+    type: contains
+    trait: manifestation
+    field: kinds
+    of: kind
+
+  # --- the land constrains the story ---
+  - id: R03
+    name: The country has what the origin needs
+    why: No one drowns at a ford where there is no river, and no one dies on a trail that was never there.
+    type: features
+    trait: origin
+    field: needs
+    of: region
+    of_field: features
+  - id: R04
+    name: The community lives in this country
+    why: Volga Germans in the Sandhills would need explaining; the guide does not explain.
+    type: contains
+    trait: region
+    field: communities
+    of: community
+  - id: R05
+    name: The remedy belongs to the people who use it
+    why: Steel across the threshold is a Scandinavian answer, Epiphany chalk a German and Bohemian one.
+    type: contains
+    trait: remedy
+    field: communities
+    of: community
+  - id: R06
+    name: The remedy can be carried out in this country
+    why: You cannot cross running water where none runs, or plough a fireguard where no one ploughs.
+    type: features
+    trait: remedy
+    field: needs_region
+    of: region
+    of_field: features
+  - id: R07
+    name: The condition can occur in this country
+    why: No threshing where no wheat is grown, no night train where there is no line.
+    type: features
+    trait: conditions
+    field: needs_region
+    of: region
+    of_field: features
+
+  # --- the era constrains the story ---
+  - id: R08
+    name: The origin is possible in the era
+    why: Barbed wire came in 1874, the grasshoppers in 1874, cholera on the trail ended with the wagons.
+    type: years
+    trait: origin
+    of: era
+  - id: R09
+    name: The community had arrived by the era
+    why: The Exodus to Kansas began in 1877; the Volga Germans came in 1874.
+    type: years
+    trait: community
+    of: era
+  - id: R10
+    name: The manifestation is possible in the era
+    why: Wire cannot sing before there is wire.
+    type: years
+    trait: manifestation
+    of: era
+  - id: R11
+    name: The remedy is possible in the era
+    why: There is no schoolhouse bell to ring before there are schoolhouses.
+    type: years
+    trait: remedy
+    of: era
+
+  # --- the death shapes the haunting ---
+  - id: R12
+    name: Manifestation does not contradict the origin
+    why: The drowned do not appear as fire, the frozen do not bring noon heat.
+    type: opposed
+    a: origin
+    b: manifestation
+    pairs: *opposed
+  - id: R13
+    name: Some manifestations need a particular kind of death
+    why: A rider comes from the herd, the trail, the storm. A man crushed in a well does not ride.
+    type: needs_tags
+    trait: manifestation
+    field: needs_origin
+    of: [origin]
+  - id: R14
+    name: The signs echo the origin or the manifestation
+    why: At least two signs should be things you could trace back to how it began, or be the plain signs every haunting has.
+    type: share
+    trait: signs
+    with: [origin, manifestation]
+    tags: [water, cold, fire, heat, drought, sand, wind, iron, light, home, horse, herd, storm, grass, land, earth, grave, trail, death, sound]
+    min: 2
+  - id: R15
+    name: No sign contradicts the origin
+    why: A drowned man does not leave ash on the sill.
+    type: opposed
+    a: origin
+    b: signs
+    pairs: *opposed
+  - id: R16
+    name: No sign contradicts the manifestation
+    why: A ground blizzard does not leave the heat of a stove on your neck.
+    type: opposed
+    a: manifestation
+    b: signs
+    pairs: *opposed
+  - id: R17
+    name: The summoning condition belongs to the story
+    why: It appears at high water because it drowned, in the hour before a blizzard because it froze.
+    type: share
+    trait: conditions
+    with: [origin, manifestation, region]
+    tags: [water, cold, fire, heat, drought, sand, wind, iron, light, home, horse, herd, storm, grass, land, trail, lost, rail, farming, ranching]
+    min: 1
+  - id: R18
+    name: No condition contradicts the origin
+    why: A drowning is not summoned by drought, nor the frozen dead by haying weather.
+    type: opposed
+    a: origin
+    b: conditions
+    pairs: *opposed_full
+  - id: R19
+    name: Some conditions need a particular kind of origin
+    why: Only the dead have an anniversary.
+    type: needs_tags
+    trait: conditions
+    field: needs_origin
+    of: [origin]
+
+  # --- temper ---
+  - id: R20
+    name: Disposition fits the origin
+    why: The lost lead others home; the murdered want something back.
+    type: needs_tags
+    trait: disposition
+    field: needs_origin
+    of: [origin]
+  - id: R21
+    name: Only lights and spirits lead travelers astray
+    why: Misleading is the old trade of the wisp. The dead have other business.
+    type: when
+    when: {trait: disposition, keys_any: [misleading]}
+    then: {trait: kind, keys_any: [light, spirit]}
+    mode: require
+
+  # --- the remedy fits the thing ---
+  - id: R22
+    name: Some remedies need a particular kind of origin
+    why: You can only bury the bones of something that has bones.
+    type: needs_tags
+    trait: remedy
+    field: needs_origin
+    of: [origin]
+  - id: R23
+    name: A friendly thing is answered with courtesy, not wards
+    why: You do not nail iron over the door against the light that brought your son home.
+    type: when
+    when: {trait: disposition, keys_any: [guiding]}
+    then: {trait: remedy, tags_any: [courtesy, release]}
+    mode: require
+  - id: R24
+    name: A hostile thing is not answered with courtesy
+    why: A cup of water on the step will not satisfy something that wants your family.
+    type: when
+    when: {trait: disposition, keys_any: [vengeful, territorial]}
+    then: {trait: remedy, tags_any: [courtesy]}
+    mode: forbid
+  - id: R25
+    name: A misleading light is refused, not appeased
+    why: The only defense against being led is not to go.
+    type: when
+    when: {trait: disposition, keys_any: [misleading]}
+    then: {trait: remedy, tags_any: [avoidance, ward]}
+    mode: require
+  - id: R26
+    name: The remedy does not contradict the origin
+    why: You do not offer water to something born of fire, or a cup to the drowned.
+    type: opposed
+    a: origin
+    b: remedy
+    pairs: *opposed
+  - id: R27
+    name: The remedy answers something about it
+    why: A ward should touch the story somewhere, or it is a superstition from another tale.
+    type: share
+    trait: remedy
+    with: [origin, manifestation, kind, conditions]
+    tags: [light, home, sound, iron, lost, water, land, thing, wind, death, grave]
+    min: 1
+  - id: R28
+    name: Some remedies need something particular in the story
+    why: You only tie off the windmill if there is a windmill in it.
+    type: needs_tags
+    trait: remedy
+    field: needs_story
+    of: [origin, manifestation, conditions]
+  - id: R29
+    name: The manifestation suits the hour and season of its summoning
+    why: A thing seen only by night is not summoned at noon; a cold in August is not called by crusted snow.
+    type: opposed
+    a: manifestation
+    b: conditions
+    pairs: *opposed_full
+  - id: R30
+    name: No sign contradicts the summoning condition
+    why: Frost does not form inside the glass at noon in a drought.
+    type: opposed
+    a: conditions
+    b: signs
+    pairs: *opposed_full
+  - id: R31
+    name: The signs do not contradict one another
+    why: A cold rising from the ground and a stove's heat on the neck cannot both be the sign of one thing.
+    type: opposed
+    a: signs
+    b: signs
+    pairs: *opposed_full
+  - id: R32
+    name: The country was settled by the era
+    why: The Sandhills had no settlers to see anything until the cattlemen came in the late 1870s.
+    type: years
+    trait: region
+    of: era
