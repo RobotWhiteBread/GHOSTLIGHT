@@ -1,0 +1,56 @@
+{
+  "id": "GL-0003",
+  "created": "2026-11-21",
+  "seed": "8c72b575a16780f6",
+  "rules": "great-plains-1850-1930@1",
+  "traits": {
+    "kind": "haunt",
+    "region": "high_plains",
+    "era": "dry_years",
+    "community": "anglo",
+    "origin": "unhung_bell",
+    "manifestation": "returns",
+    "disposition": "territorial",
+    "conditions": "asks_the_way",
+    "signs": [
+      "cattle_bunch",
+      "harness_bells",
+      "iron_taste"
+    ],
+    "remedy": "horseshoe"
+  },
+  "facts": {
+    "year": 1919,
+    "family": "Sayre",
+    "river": "Frenchman Creek",
+    "place": "the stage road on Frenchman Creek",
+    "place_short": "Frenchman Creek",
+    "dead": {
+      "name": "Sarah Barlow",
+      "first": "Sarah",
+      "surname": "Barlow",
+      "role": "a farmer",
+      "sex": "f"
+    },
+    "witness": {
+      "name": "Hattie Haskins",
+      "first": "Hattie",
+      "surname": "Haskins",
+      "role": "a schoolteacher",
+      "sex": "f"
+    },
+    "light_src": "coal-oil lamp",
+    "rig": "Ford",
+    "people": "the Yankee families",
+    "term": "the spook house"
+  },
+  "entry": {
+    "common_name": "Sayre's Bell",
+    "local_name": "It is known to the Yankee families as *the spook house*, and by that name it is recorded here.",
+    "description": "A haunted place of the High Plains, manifesting as an object that, taken away, is found again in its old place within the week. It is met with when someone is lost and asks the road. There is a taste of iron in the mouth, there is a jingle of harness, and the cattle drift and bunch against the fence. It suffers no one to stay long at Frenchman Creek, and those who try leave sooner than they meant to.",
+    "first_account": "A schoolteacher named Hattie Haskins gave the first account in 1919. \"My brother took it clear to town on the wagon. It was home before he was.\" By the common understanding of the district, the bell came out from the East in 1919 for a congregation that scattered before it could be hung, and it was never hung.",
+    "precaution": "Nail a horseshoe over the door, open end up, so the luck does not run out. Those who have neglected it have generally had cause to regret it.",
+    "prose_attempt": 1
+  },
+  "slug": "sayre-s-bell"
+}

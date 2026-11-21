@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}About | {{ site.title }}{% endblock %}
+{% block body %}
+<h1>About the guide</h1>
+<p>GHOSTLIGHT is a generative field guide that is never finished. It is named for the single bulb left burning on an empty stage, which theater people leave on to keep the ghosts away.</p>
+<p>Every entity is invented, in the manner of the settler folklore of {{ meta.title | lower }}. Indigenous sacred beings and ceremonies are deliberately left out of the grammar; they are not ours to generate.</p>
+
+<h2>How it grows</h2>
+<p>Once a week the guide wakes. If {{ cadence.entity_every_days }} days have passed since the last entry, it enters a new one. Every week it also gathers new sightings of entities already on file, written as parish records, newspaper notices, letters home, Federal Writers' Project interviews, oral histories and forum posts. Older entries have thicker dossiers because they have been waiting longer.</p>
+<p>The canon is append-only. Nothing already entered is ever altered: not an entity, not a sighting. Each one records the seed it was made from, and each seed is drawn from the whole canon as it stood the moment before, so the guide is reproducible and still surprises its keeper.</p>
+
+<h2>The rules</h2>
+<p>The coherence of the guide comes from {{ rules | length }} rules, each checked before anything is entered. A sighting must also agree with every sighting already on file: a light first reported as green stays green.</p>
+<ol class="rules">
+{% for r in rules %}
+  <li><strong>{{ r.id }}. {{ r.name }}.</strong> {{ r.why }}</li>
+{% endfor %}
+</ol>
+{% endblock %}

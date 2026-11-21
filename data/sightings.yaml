@@ -1,0 +1,240 @@
+# GHOSTLIGHT sightings: the voices in which later accounts arrive.
+#
+# Consistency is enforced in code (ghostlight/sightings.py, check_sightings):
+#   - a sighting is dated after the entity's first account, inside its voice's years
+#   - it reports only the entity's own manifestation, condition and signs
+#   - the month fits the condition; anniversary sightings all fall on one date
+#   - details (a light's color, a rider's coat) are set once and never change
+#   - a sighting that cites an earlier one cites it correctly
+#
+# Symbols available to voice templates, beyond the entity's own:
+#   #date#  #witness# #wname# #wfirst# #wsurname# #he_w# (witness pronoun)
+#   #report# #when_past# #sign# #outcome# #detail# #cite# #church# #paper# #homeland#
+#   #state# #age# #handle# #lang#
+
+voices:
+  parish:
+    label: parish record
+    years: [1858, 1930]
+    weight: 2
+    date_format: long
+    title: ["Entry in the register of #church#"]
+    body:
+      - "#wname# of this parish came to me after service and stated that, #when_past#, at #place#, #he_w# #report#. #sign.capitalize#. #detail# #outcome# I record it as it was told to me."
+      - "Memorandum. #wname# reports that, at #place#, #when_past#, #he_w# #report#. #sign.capitalize#. #detail# #outcome# The family asks to be remembered in our prayers."
+      - "Called to the #wsurname# house on the matter of a disturbance. #wfirst# says #he_w# #report#, #when_past#. #sign.capitalize#. #detail# #outcome# I counselled calm and left a blessing."
+  newspaper:
+    label: newspaper notice
+    years: [1868, 1990]
+    weight: 3
+    date_format: long
+    title: ["#paper#", "Notice in #paper#"]
+    body:
+      - "ODD DOINGS AT #place_upper#. #wname#, well known in this vicinity, reports that, #when_past#, #he_w# #report#. #sign.capitalize#, says #wfirst#. #detail# #outcome# We give the account for what it is worth."
+      - "#wname# was in town Saturday and told of a strange experience at #place#. #he_w.capitalize# #report#, #when_past#. #sign.capitalize#. #detail# #outcome# Older residents say it is nothing new."
+      - "A CURIOUS STORY. The old tale of #place# is going the rounds again. #wname# declares that, #when_past#, #he_w# #report#, and that #sign#. #detail# #outcome# #cite#"
+  letter:
+    label: letter
+    first_person: true
+    years: [1858, 1965]
+    weight: 2
+    date_format: long
+    title: ["Letter from #wname# to #homeland##lang#"]
+    body:
+      - "You will laugh at me, but I must tell someone. Out at #place#, #when_past#, I #report#. #sign.capitalize#. #detail# #outcome# Do not tell Mother."
+      - "We are all well, the crops fair. But there is something here I did not write of before. Out at #place#, #when_past#, I #report#. #sign.capitalize#. #detail# #outcome# The neighbors say it has always been so."
+  wpa:
+    label: Federal Writers' Project interview
+    first_person: true
+    years: [1936, 1941]
+    weight: 1
+    date_format: long
+    title: ["Federal Writers' Project folklore interview, #state#"]
+    body:
+      - "Informant: #wname#, aged #age#. \"You want a ghost story, I'll give you a true one. Out at #place#, #when_past#, I #report#. #sign.capitalize#. #detail# #outcome# You can put that in your book.\""
+      - "Informant: #wname#, aged #age#. \"I'll tell you what I told the others. Out at #place#, #when_past#, I #report#, and #sign#. #detail# #outcome# I don't care who believes it.\" Informant was firm on every point."
+  oral_history:
+    label: county historical society oral history
+    first_person: true
+    years: [1960, 1995]
+    weight: 1
+    date_format: long
+    title: ["County historical society oral history"]
+    body:
+      - "#wname#, recorded at home. \"Everybody out our way knew about #place#. I saw it once myself, #when_past#. I #report#. #sign.capitalize#. #detail# #outcome# #cite#\""
+      - "#wname#, recorded at the senior center. \"My dad wouldn't talk about it. But out at #place#, #when_past#, I #report#, and #sign#. #detail# #outcome# #cite#\""
+  forum:
+    label: forum post
+    first_person: true
+    years: [1999, 2026]
+    weight: 2
+    date_format: iso
+    title: ["Posted by #handle# to a regional ghost stories forum"]
+    body:
+      - "ok this is going to sound crazy. grew up out by #place# and my whole family knows about it. #when_past.capitalize#, I #report#. #sign.capitalize#. #detail# #outcome# #cite#"
+      - "Long time lurker. Has anyone else been out to #place#? I was there #when_past#, and I #report#. #sign.capitalize#. #detail# #outcome# #cite#"
+      - "Not trying to start anything, just reporting. Out at #place#, #when_past#, my brother and I #report#. #sign.capitalize#. #detail# #outcome# #cite#"
+
+# Citations of earlier sightings, used by voices that would know the old stories.
+cite:
+  - "My grandmother always said it was in the #cite_voice# of #cite_year#, and now I believe her."
+  - "There is a #cite_voice# about it from #cite_year# if anyone wants to look it up."
+  - "It is the same thing they wrote up in the #cite_voice# of #cite_year#."
+cite_none: [""]
+
+outcome:
+  guiding:
+    - "#wfirst# had been turned around in the dark, and after it went by #he_w# found the road home without trouble."
+    - "#wfirst# says it was the only reason #he_w# came safe to the house that night."
+  warning:
+    - "Within the month there was a death in the neighborhood."
+    - "The storm came that same night, as the old people said it would."
+  mournful:
+    - "It paid no attention and was gone after a little while."
+    - "It seemed not to know anyone was there."
+  misleading:
+    - "#wfirst# was found next morning two miles off the road with no notion how #he_w# got there."
+    - "When it went out, #wfirst# had no idea where #he_w# was and walked until daylight."
+  vengeful:
+    - "Two head of stock were dead in the lot the next morning."
+    - "The #family# family had a run of bad luck after, as they generally do."
+  territorial:
+    - "#wfirst# did not stay to see more and has not been back."
+    - "The horses would not stand and #wfirst# left that place at a run."
+
+# Details: small particulars that a sighting may establish once. After that,
+# every sighting that mentions the slot must give the same value.
+details:
+  figure:
+    applies_to: [walker, rider, wet_figure, noon_woman]
+    clothing:
+      mention: "It wore #value#."
+      options_m: [a buffalo coat, a long linen duster, shirtsleeves in all weather, a slicker shining wet, a black hat pulled low]
+      options_f: [a black wool dress, a sunbonnet, a shawl over the head, a long linen duster]
+    gait:
+      mention: "It moved #value#."
+      options: [with a limp, very slowly, without seeming to take steps, with its head down]
+  light:
+    applies_to: [lantern, ball_light, meadow_lights, fire_line]
+    color:
+      mention: "The light was #value#."
+      options: [green, blue-white, yellow like a coal-oil flame, red, the color of a dying ember]
+    height:
+      mention: "It kept #value#."
+      options: [about waist high, a little above the grass, as high as a man's head]
+  sound:
+    applies_to: [voice, knocking, phantom_team, bell_ringing, singing_wire]
+    direction:
+      mention: "The sound came #value#."
+      options: [from the northwest, from the river side, from under the ground, from no direction at all]
+  wind:
+    applies_to: [whirlwind]
+    turning:
+      mention: "It turned #value#."
+      options: [against the sun, with the sun, first one way and then the other]
+  iron:
+    applies_to: [wrong_water, singing_wire, bell_ringing]
+    note:
+      mention: "Afterward there was #value#."
+      options: [a smell of hot metal, a ringing in the ears, a rust stain on the hands]
+  home:
+    applies_to: [set_supper]
+    count:
+      mention: "The table was laid with #value#."
+      options: [four places, two places, six places, a single place]
+
+# Months in which each condition can occur. Missing means any month.
+condition_months:
+  before_blizzard: [11, 12, 1, 2, 3]
+  crusted_snow: [12, 1, 2, 3]
+  spring_rise: [3, 4, 5, 6]
+  drought_noon: [6, 7, 8]
+  smoke_haze: [3, 4, 9, 10, 11]
+  haying: [7, 8]
+  threshing: [7, 8, 9]
+  heat_lightning: [6, 7, 8]
+
+# For anniversaries: the months in which each kind of death happens.
+origin_months:
+  drowned_ford: [3, 4, 5, 6]
+  frozen_blizzard: [11, 12, 1, 2, 3]
+  searcher: [11, 12, 1, 2, 3]
+  prairie_fire: [3, 4, 9, 10, 11]
+  lightning_herd: [5, 6, 7, 8]
+  thirst: [6, 7, 8]
+  stampede: [5, 6, 7, 8, 9]
+  sod_collapse: [4, 5, 6]
+
+church:
+  czech: [St. Wenceslaus Church, the Catholic church of St. Ludmila]
+  swedish: [Bethany Lutheran Church, the Swedish Mission church]
+  norwegian: ["Our Saviour's Lutheran Church", the Norwegian Lutheran church]
+  danish: [the Danish Lutheran church]
+  german: [St. John's Lutheran Church, the German Catholic church]
+  volga: [St. Fidelis Church, the Volga German church]
+  irish: ["St. Patrick's Church"]
+  exoduster: [First Baptist Church of the colony, the A.M.E. church]
+  hispano: [the parish of San Isidro]
+  anglo: [the Methodist church, the Methodist circuit]
+  cattlemen: [the Methodist church]
+
+paper:
+  sandhills: [the Loup Valley Clarion, the Dismal River Sentinel, the Sandhills Ranchman]
+  platte: [the Platte Valley Independent, the Wood River Gazette]
+  smoky_hill: [the Smoky Hill Pioneer, the Saline County Reflector]
+  flint_hills: [the Cottonwood Valley Leader, the Flint Hills Courier]
+  dakota: [the James River Republican, the Coteau Prairie Times]
+  high_plains: [the High Plains Range Journal, the Arikaree Bugle]
+
+state:
+  sandhills: Nebraska
+  platte: Nebraska
+  smoky_hill: Kansas
+  flint_hills: Kansas
+  dakota: South Dakota
+  high_plains: Colorado
+
+homeland:
+  czech: {where: [a cousin in Bohemia, a sister in Moravia], lang: " (translated from the Czech)"}
+  swedish: {where: [a brother in Småland, family in Värmland], lang: " (translated from the Swedish)"}
+  norwegian: {where: [a sister in Telemark, family in Hallingdal], lang: " (translated from the Norwegian)"}
+  danish: {where: [a cousin in Jutland], lang: " (translated from the Danish)"}
+  german: {where: [a brother in Hanover, family in Holstein], lang: " (translated from the German)"}
+  volga: {where: [family on the Volga], lang: " (translated from the German)"}
+  irish: {where: [a sister in County Clare, family in Kerry], lang: ""}
+  exoduster: {where: [a brother in Kentucky, family in Tennessee], lang: ""}
+  hispano: {where: [family in Taos, a cousin in Mora], lang: " (translated from the Spanish)"}
+  anglo: {where: [a brother in Ohio, family in Iowa], lang: ""}
+  cattlemen: {where: [a brother in Texas, family in Missouri], lang: ""}
+
+handles: [prairiedog_77, sandhillsgirl, oldsodbuster, county_road_k, windbreak, gravelroadghost, shelterbelt, section_line, lastcalvinghand, meadowlark_ne, quietcreek, twoswitch]
+
+# Details a manifestation must never take, because its own form settles them.
+detail_exclude:
+  fire_line: [color, height]
+  lantern: [height]
+  noon_woman: [clothing]
+  wet_figure: []
+
+# How each manifestation is reported in a later account. Past tense verb
+# phrases, so "#wname# #report#" and "I #report#" both read.
+report:
+  walker: ["saw a figure walking at the edge of the lamplight, keeping pace", "saw someone walking just beyond the lamplight, who stopped whenever #he_w# stopped"]
+  rider: ["saw a horseman on the skyline keeping pace, who would not answer a halloo", "was followed for a mile by a horseman who kept just out of hail"]
+  wet_figure: ["saw a figure standing in the doorway, dripping wet", "found someone wet through standing in the open door, and only water on the boards after"]
+  voice: ["heard a voice calling a name across the open country", "heard a name called three times out of the dark"]
+  knocking: ["heard a knock at the door, three times, with no one there", "heard knocking at the window and found the yard empty"]
+  phantom_team: ["heard a team and wagon go by close at hand and saw nothing", "heard trace chains and wheels pass on the road with no wagon on it"]
+  lantern: ["saw a lantern swinging across the field with no one carrying it", "watched a lantern go by at the height of a man's hand, swinging, with nobody under it"]
+  ball_light: ["saw a ball of light rolling along the ground", "saw a round light rolling down the section line"]
+  meadow_lights: ["saw pale lights moving over the low ground", "counted pale lights over the meadow, five or six of them"]
+  fire_line: ["saw a line of fire on the horizon that gave no smoke", "saw the skyline burning in a thin red line without smoke"]
+  whirlwind: ["saw a whirlwind travel upwind across the pasture", "watched a whirlwind cross the road against the wind and stop at the fence"]
+  ground_blizzard: ["was caught in a ground blizzard under a clear sky", "saw the snow blowing waist deep with no wind and the stars out"]
+  cold_patch: ["rode into a cold place on a warm day, where breath showed white", "passed through a cold place a few rods across, like a cellar"]
+  noon_woman: ["saw a woman's shape in the shimmer at the end of the field, nearer each time", "saw a woman standing in the shimmer off the ground, beckoning"]
+  bell_ringing: ["heard a bell ringing where no bell has ever hung", "heard a bell tolling slow from the open prairie, where there is no bell"]
+  returns: ["found it back in its old place, though it had been hauled off the week before", "found that it had come home again, however far it had been taken"]
+  wrong_water: ["drew water from the well that came up warm and tasting of iron", "drew a bucket that came up rust red"]
+  set_supper: ["found the table laid for supper in the empty house, the coffee hot", "found supper on the table in a house no one lives in"]
+  singing_wire: ["heard the wire singing in still air along the whole fence line", "heard the fence hum and sing with no wind"]

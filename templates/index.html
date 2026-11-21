@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | {{ site.title }}{% endblock %}
+{% block body %}
+<h1>{{ title }}</h1>
+{% for key, name, items in sections %}
+<section id="{{ key }}" class="group">
+  <h2>{{ name[:1] | upper }}{{ name[1:] }}</h2>
+  <ul class="plain">
+  {% for e in items %}
+    <li><a href="{{ root }}{{ e.url }}">{{ e.entry.common_name }}</a> <span class="muted">{{ e.id }}, first account {{ e.facts.year }}, {{ e.dossier | length }} sighting{{ "" if e.dossier|length == 1 else "s" }}</span></li>
+  {% endfor %}
+  </ul>
+</section>
+{% else %}
+<p class="muted">Nothing entered yet.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ e.entry.common_name }} | {{ site.title }}{% endblock %}
+{% block body %}
+<article class="entry">
+  <p class="kicker">{{ e.id }} &middot; entered {{ e.created }}</p>
+  <h1>{{ e.entry.common_name }}</h1>
+  <p class="localname">{{ e.entry.local_name | md }}</p>
+  <figure class="plate">{{ e.plate }}<figcaption>Plate {{ e.id[3:] | int }}. {{ e.entry.common_name }}, {{ label("region", e.traits.region) }}.</figcaption></figure>
+
+  <h2>Description</h2>
+  <p>{{ e.entry.description | md }}</p>
+  <h2>First recorded account</h2>
+  <p>{{ e.entry.first_account | md }}</p>
+  <h2>Precaution</h2>
+  <p>{{ e.entry.precaution | md }}</p>
+
+  <h2>Particulars</h2>
+  <dl class="particulars">
+    <dt>Kind</dt><dd>{{ label("kind", e.traits.kind) }}</dd>
+    <dt>Region</dt><dd><a href="{{ root }}index/region.html#{{ e.traits.region }}">{{ label("region", e.traits.region) }}</a></dd>
+    <dt>Era</dt><dd><a href="{{ root }}index/era.html#{{ e.traits.era }}">{{ label("era", e.traits.era) }}</a>, first account {{ e.facts.year }}</dd>
+    <dt>Told among</dt><dd>{{ label("community", e.traits.community) }}</dd>
+    <dt>Origin</dt><dd>{{ label("origin", e.traits.origin) }}</dd>
+    <dt>Manifestation</dt><dd><a href="{{ root }}index/manifestation.html#{{ e.traits.manifestation }}">{{ label("manifestation", e.traits.manifestation) }}</a></dd>
+    <dt>Summoned</dt><dd>{{ label("conditions", e.traits.conditions) }}</dd>
+    <dt>Signs</dt><dd>{% for s in e.traits.signs %}{{ label("signs", s) }}{% if not loop.last %}; {% endif %}{% endfor %}</dd>
+    <dt>Remedy</dt><dd>{{ label("remedy", e.traits.remedy) }}</dd>
+    <dt>Disposition</dt><dd>{{ label("disposition", e.traits.disposition) }}</dd>
+  </dl>
+
+  <h2>Dossier of sightings</h2>
+  {% if e.dossier %}
+  <ol class="dossier">
+  {% for s in e.dossier %}
+    <li id="{{ s.id }}">
+      <p class="voice"><span class="tag">{{ voices[s.voice].label }}</span> {{ s.date }}</p>
+      <p class="source">{{ s.title }}</p>
+      <blockquote>{{ s.text | md }}</blockquote>
+      <p class="muted small">Reported to the guide {{ s.reported }}{% if s.cites %}. Refers to <a href="#{{ s.cites }}">{{ s.cites }}</a>{% endif %}.</p>
+    </li>
+  {% endfor %}
+  </ol>
+  {% else %}
+  <p class="muted">No later sightings have been reported yet. They will come.</p>
+  {% endif %}
+  <p class="muted small">Seed <code>{{ e.seed }}</code>, rules {{ e.rules }}.</p>
+</article>
+{% endblock %}
