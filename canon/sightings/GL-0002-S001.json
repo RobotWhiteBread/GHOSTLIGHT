@@ -1,0 +1,23 @@
+{
+  "id": "GL-0002-S001",
+  "entity": "GL-0002",
+  "seed": "5992a24231875758",
+  "reported": "2026-11-23",
+  "voice": "parish",
+  "year": 1913,
+  "month": 2,
+  "day": 13,
+  "date": "February 13, 1913",
+  "witness": "Halvor Moe",
+  "signs": [
+    "harness_bells"
+  ],
+  "details": {
+    "color": "the color of a dying ember"
+  },
+  "new_detail": "color",
+  "cites": null,
+  "form": 0,
+  "title": "Entry in the register of the Norwegian Lutheran church",
+  "text": "Halvor Moe of this parish came to me after service and stated that, in the hour before a blizzard, at the lake shore on the Vermillion River, he saw a lantern swinging across the field with no one carrying it. We heard harness jingling. The light was the color of a dying ember. The Brekke family had a run of bad luck after, as they generally do. I record it as it was told to me."
+}
